@@ -1,22 +1,23 @@
-PlusOne Coin
+Brazio
 ============
 
-https://plusonecoin.org
+https://Braz.io
 
-What is PlusOne Coin?
+What is Brazio?
 ---------------------
 
-PlusOneCoin is a social media cryptocurrency. It enables content providers and platform owners to monetize their social media sites while giving their audience more power to affect the social media content they consume.
+Brazio is the cryptocurrency of Brazil. It has a user-friendly interface and can be mined by anyone. Mining guide coming soon... 
 
 License
 -------
 
-PlusOne Coin is released under the terms of the MIT license. See [COPYING](COPYING) for more
+Brazio is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Credits
 -------
 
-PlusOneCoin was forked from Bitcoin Core
+Brazio was forked from Bitcoin Core & Plusonecoin
 * [bitcoin](https://github.com/bitcoin/bitcoin)
 * [CryptoCoderz](https://github.com/CryptoCoderz/Espers.git) HMQ1725
+* [plusonecoin](https://github.com/plusonecoin/plusonecoin.git)
