@@ -88,7 +88,7 @@ public:
         consensus.nPowTargetSpacing = 60; // 1 Minute Block
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
-	consensus.nMinerConfirmationWindow = consensus.nPowTargetTimespan / consensus.nPowTargetSpacing;
+	    consensus.nMinerConfirmationWindow = consensus.nPowTargetTimespan / consensus.nPowTargetSpacing;
         consensus.nRuleChangeActivationThreshold = std::ceil(consensus.nMinerConfirmationWindow * 0.95); // 95% of nMinerConfirmationWindow	0
 	
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
@@ -123,13 +123,13 @@ public:
         nDefaultPort = 22780;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(GENESIS_TIME, 2314582475, GENESIS_DIFFICULTY, 1, 50 * COIN);
-	//MineGenesisBlock(genesis);
+        genesis = CreateGenesisBlock(GENESIS_TIME, 2314586542, GENESIS_DIFFICULTY, 1, 50 * COIN);
+	    //MineGenesisBlock(genesis);
 	
-	consensus.hashGenesisBlock = genesis.GetHash();
+	    consensus.hashGenesisBlock = genesis.GetHash();
 
-	assert(consensus.hashGenesisBlock == uint256S("0x00001ef7e03e773817a36c267d6f431412a3678dec49b4171f86ce419abcddea"));
-        assert(genesis.hashMerkleRoot == uint256S("0x5a5fbc104e0a21be0a745d014a87340408ef288cc4ca6ab21fa0d7565e4f6a76"));
+	    assert(consensus.hashGenesisBlock == uint256S("0x000022b68783a860a6ff37a7ed39c37c3d409003a7bd3fc2b684fc5021489693"));
+        assert(genesis.hashMerkleRoot == uint256S("0xd929c4cd51f97b6ae1e288281b4a66906b7417bb8b863124bcf46105ffa669bf"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.push_back(CDNSSeedData("8.12.18.35", "8.12.18.175"));
@@ -204,12 +204,12 @@ public:
         nDefaultPort = 32718;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(GENESIS_TIME, 43828036, GENESIS_DIFFICULTY, 1, 50 * COIN);
-	//MineGenesisBlock(genesis);
+        genesis = CreateGenesisBlock(GENESIS_TIME, 44163494, GENESIS_DIFFICULTY, 1, 50 * COIN);
+	    //MineGenesisBlock(genesis);
 
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00004485c4f0ceaf9dd419be43148e7a3f4d60d6e1da5b45191e17d64849619b"));
-        assert(genesis.hashMerkleRoot == uint256S("0x5a5fbc104e0a21be0a745d014a87340408ef288cc4ca6ab21fa0d7565e4f6a76"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00004a35d65091d73b34e865f3fe098f1a6d54d89a5dc1a62b364cca530ff572"));
+        assert(genesis.hashMerkleRoot == uint256S("0xd929c4cd51f97b6ae1e288281b4a66906b7417bb8b863124bcf46105ffa669bf"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -282,12 +282,12 @@ public:
         nDefaultPort = 42718;
         nPruneAfterHeight = 1000;
 
-	genesis = CreateGenesisBlock(GENESIS_TIME, 916414622, GENESIS_DIFFICULTY, 1, 50 * COIN);
-	//MineGenesisBlock(genesis);
+	    genesis = CreateGenesisBlock(GENESIS_TIME, 916426728, GENESIS_DIFFICULTY, 1, 50 * COIN);
+	    //MineGenesisBlock(genesis);
  
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000062f1ea423cf6acb44d150b46c1121f5e8705a49471e3cdb354fe53e1d85f"));
-        assert(genesis.hashMerkleRoot == uint256S("0x5a5fbc104e0a21be0a745d014a87340408ef288cc4ca6ab21fa0d7565e4f6a76"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000567569be592fe66adc980815d8a8a985c0e4477c44dcb11e9d67e95d2fec"));
+        assert(genesis.hashMerkleRoot == uint256S("0xd929c4cd51f97b6ae1e288281b4a66906b7417bb8b863124bcf46105ffa669bf"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.

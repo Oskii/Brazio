@@ -46,6 +46,8 @@
 #include <boost/math/distributions/poisson.hpp>
 #include <boost/thread.hpp>
 
+#include "base58.h"
+
 #if defined(NDEBUG)
 # error "Bitcoin cannot be compiled without assertions."
 #endif
@@ -528,7 +530,7 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state, bool fChe
         if (tx.vin[0].scriptSig.size() < 2 || tx.vin[0].scriptSig.size() > 100)
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-length");
 
-	std::string developerWallet = "0xDeveloperAddress TODO: Add this in next commit";
+	    std::string developerWallet = "0xDeveloperAddress TODO: Add this in next commit";
         CTxDestination developerWalletDest = CBitcoinAddress(developerWallet).Get(); 
         CScript developerCScript = GetScriptForDestination(developerWalletDest);
         if ((tx.vout.size() > 1) && (tx.vout[1].scriptPubKey != developerCScript))
