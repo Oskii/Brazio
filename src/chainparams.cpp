@@ -120,7 +120,7 @@ public:
         pchMessageStart[1] = 0xbd;
         pchMessageStart[2] = 0xbe;
         pchMessageStart[3] = 0xd8;
-        nDefaultPort = 22718;
+        nDefaultPort = 22780;
         nPruneAfterHeight = 100000;
 
         genesis = CreateGenesisBlock(GENESIS_TIME, 2314582475, GENESIS_DIFFICULTY, 1, 50 * COIN);
@@ -132,7 +132,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x5a5fbc104e0a21be0a745d014a87340408ef288cc4ca6ab21fa0d7565e4f6a76"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.push_back(CDNSSeedData("plusonecoin.org", "seed.plusonecoin.org"));
+        vSeeds.push_back(CDNSSeedData("8.12.18.35", "8.12.18.175"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
