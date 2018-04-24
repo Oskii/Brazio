@@ -20,7 +20,7 @@ WORKDIR /src
 RUN ./autogen.sh
 RUN ./configure LDFLAGS="-L/src/db4/lib/" CPPFLAGS="-I/src/db4/include/"
 RUN make
-RUN cp src/plusonecoind /usr/bin
-RUN cp src/plusonecoin-cli /usr/bin
-RUN cp src/plusonecoin-tx /usr/bin
+RUN cp src/braziod /usr/bin
+RUN cp src/brazio-cli /usr/bin
+RUN cp src/brazio-tx /usr/bin
 RUN rm -fr /src

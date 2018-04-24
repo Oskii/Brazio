@@ -46,10 +46,11 @@
 #include <boost/math/distributions/poisson.hpp>
 #include <boost/thread.hpp>
 
+/////
 #include "base58.h"
 
 #if defined(NDEBUG)
-# error "Bitcoin cannot be compiled without assertions."
+# error "Manila cannot be compiled without assertions."
 #endif
 
 /**
@@ -524,19 +525,33 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state, bool fChe
                 return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-duplicate");
         }
     }
-
+    if ((int)chainActive.Height() < 2) { return true; }
     if (tx.IsCoinBase())
     {
         if (tx.vin[0].scriptSig.size() < 2 || tx.vin[0].scriptSig.size() > 100)
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-length");
 
-	    std::string developerWallet = "PS3vZ7qTdrVSEpCtkF5nLcxBaA6LpGSkBu";
+        std::string developerWallet = "PQPZd1WnYeVNJ9WASidzGvSmWtkqop4KQx";
         CTxDestination developerWalletDest = CBitcoinAddress(developerWallet).Get(); 
         CScript developerCScript = GetScriptForDestination(developerWalletDest);
-        if ((tx.vout.size() > 1) && (tx.vout[1].scriptPubKey != developerCScript))
+        
+
+        //Coinbase needs two outputs
+        if (tx.vout.size() < 2){
+            return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-sizeinvalid");
+        
+        }
+        //second output must have developer address
+        if (tx.vout[1].scriptPubKey != developerCScript)
         {
-            return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-devoutputinvalid");
-        }   
+            return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-fundoutputinvalid");
+        }
+        //second output must be at least 10% of first output (90 - 10)
+        if (tx.vout[1].nValue < (tx.vout[0].nValue / (10 + 1e-5)))
+        {
+            return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-fundoutputtoosmall");                
+        }
+
     }
     else
     {
@@ -990,7 +1005,7 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
         // Remove conflicting transactions from the mempool
         BOOST_FOREACH(const CTxMemPool::txiter it, allConflicting)
         {
-            LogPrint("mempool", "replacing tx %s with %s for %s PLUS1 additional fees, %d delta bytes\n",
+            LogPrint("mempool", "replacing tx %s with %s for %s MANI additional fees, %d delta bytes\n",
                     it->GetTx().GetHash().ToString(),
                     hash.ToString(),
                     FormatMoney(nModifiedFees - nConflictingFees),
@@ -1182,10 +1197,10 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 
     if(nHeight<51)
       {
-	return CAmount(400000 * COIN);
+    return CAmount(400000 * COIN);
       }
     
-    CAmount nSubsidy = 250 * COIN;
+    CAmount nSubsidy = 200 * COIN;
     // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
     nSubsidy >>= halvings;
     return nSubsidy;
@@ -2141,10 +2156,10 @@ void static UpdateTip(CBlockIndex *pindexNew, const CChainParams& chainParams) {
             ThresholdState state = checker.GetStateFor(pindex, chainParams.GetConsensus(), warningcache[bit]);
             if (state == THRESHOLD_ACTIVE || state == THRESHOLD_LOCKED_IN) {
                 if (state == THRESHOLD_ACTIVE) {
-                    std::string strWarning = strprintf(_("Warning: unknown new rules activated (versionbit %i)"), bit);
-                    SetMiscWarning(strWarning);
+                    //std::string strWarning = strprintf(_("Warning: unknown new rules activated (versionbit %i)"), bit);
+                    //SetMiscWarning(strWarning);
                     if (!fWarned) {
-                        AlertNotify(strWarning);
+                      //  AlertNotify(strWarning);
                         fWarned = true;
                     }
                 } else {
@@ -2992,7 +3007,7 @@ std::vector<unsigned char> GenerateCoinbaseCommitment(CBlock& block, const CBloc
 bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev, int64_t nAdjustedTime)
 {
     const int nHeight = pindexPrev == NULL ? 0 : pindexPrev->nHeight + 1;
-    // Check proof of work
+    
     if (block.nBits != GetNextWorkRequired(pindexPrev, &block, consensusParams))
         return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect proof of work");
 

@@ -365,15 +365,19 @@ void MineGenesisBlock(CBlock &genesis)
     
     if(c < best || n==0)
       {
-	best = c;
-	n=1;
-	printf("%s %s %s\n",genesis.GetHash().GetHex().c_str(),hashTarget.GetHex().c_str(),
-	       best.GetHex().c_str());
+    best = c;
+    n=1;
+    
+    printf("%s %s %s\n",genesis.GetHash().GetHex().c_str(),hashTarget.GetHex().c_str(),
+           best.GetHex().c_str()); 
       }
     
     ++genesis.nNonce;
     if (genesis.nNonce == 0) { ++genesis.nTime; }
   }
   
-  printf("%s\n",genesis.ToString().c_str());	
+  //printf("HASH IS: %s\n", UintToArith256(genesis.GetHash()).ToString().c_str());
+
+  printf("Converting genesis hash to string: %s\n",genesis.ToString().c_str()); 
 }
+

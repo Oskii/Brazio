@@ -114,7 +114,7 @@
         <translation>Reindexando bloques en el disco...</translation>
     </message>
     <message>
-        <source>Send coins to a PlusOneCoin address</source>
+        <source>Send coins to a Brazio address</source>
         <translation>Enviar monedas a una dirección Bitcoin</translation>
     </message>
     <message>
@@ -158,12 +158,12 @@
         <translation>Encriptar las llaves privadas que pertenecen a tu billetera</translation>
     </message>
     <message>
-        <source>Sign messages with your PlusOneCoin addresses to prove you own them</source>
-        <translation>Firma mensajes con tus direcciones PlusOneCoin para probar que eres dueño de ellas</translation>
+        <source>Sign messages with your Brazio addresses to prove you own them</source>
+        <translation>Firma mensajes con tus direcciones Brazio para probar que eres dueño de ellas</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified PlusOneCoin addresses</source>
-        <translation>Verificar mensajes para asegurar que estaban firmados con direcciones PlusOneCoin especificas</translation>
+        <source>Verify messages to ensure they were signed with specified Brazio addresses</source>
+        <translation>Verificar mensajes para asegurar que estaban firmados con direcciones Brazio especificas</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -608,8 +608,8 @@
         <translation>Correr en segundo plano como daemon y aceptar comandos</translation>
     </message>
     <message>
-        <source>PlusOneCoin Core</source>
-        <translation>PlusOneCoin Core</translation>
+        <source>Brazio Core</source>
+        <translation>Brazio Core</translation>
     </message>
     <message>
         <source>Bind to given address and always listen on it. Use [host]:port notation for IPv6</source>

@@ -17,7 +17,7 @@ information or see https://opensource.org/licenses/MIT.
 Credits
 -------
 
-Brazio was forked from Bitcoin Core & Plusonecoin
+Brazio was forked from Bitcoin Core & Brazio
 * [bitcoin](https://github.com/bitcoin/bitcoin)
 * [CryptoCoderz](https://github.com/CryptoCoderz/Espers.git) HMQ1725
-* [plusonecoin](https://github.com/plusonecoin/plusonecoin.git)
+* [brazio](https://github.com/brazio/brazio.git)

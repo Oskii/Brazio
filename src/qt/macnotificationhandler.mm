@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"org.plusonecoin.PlusOneCoin-Qt";
+        return @"org.brazio.Brazio-Qt";
     } else {
         return [self __bundleIdentifier];
     }

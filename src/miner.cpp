@@ -6,7 +6,6 @@
 #include "miner.h"
 
 #include "amount.h"
-#include "base58.h"
 #include "chain.h"
 #include "chainparams.h"
 #include "coins.h"
@@ -20,19 +19,26 @@
 #include "pow.h"
 #include "primitives/transaction.h"
 #include "script/standard.h"
-#include "script/script.h"
 #include "timedata.h"
 #include "txmempool.h"
 #include "util.h"
 #include "utilmoneystr.h"
 #include "validationinterface.h"
 #include "script/standard.h"
+//#include "qt/guiutil.h" //hax
+
 #include <algorithm>
 #include <boost/thread.hpp>
 #include <boost/tuple/tuple.hpp>
 #include <queue>
 #include <utility>
 
+
+
+///////
+#include "script/script.h"
+#include "util.h"
+#include "base58.h"
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -150,7 +156,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     LOCK2(cs_main, mempool.cs);
     CBlockIndex* pindexPrev = chainActive.Tip();
     nHeight = pindexPrev->nHeight + 1;
-
+        
     pblock->nVersion = ComputeBlockVersion(pindexPrev, chainparams.GetConsensus());
     // -regtest only: allow overriding block.nVersion with
     // -blockversion=N to test forking scenarios
@@ -185,16 +191,26 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     // Create coinbase transaction.
     CMutableTransaction coinbaseTx;
-    coinbaseTx.vin.resize(2);
+    coinbaseTx.vin.resize(1);
     coinbaseTx.vin[0].prevout.SetNull();
-    coinbaseTx.vout.resize(1);
+    //coinbaseTx.vout.resize(1);
+    
+    coinbaseTx.vout.resize(2); // 2 outputs, 1 for us, 1 for them.
     coinbaseTx.vout[0].scriptPubKey = scriptPubKeyIn;
-    std::string developerWallet = "PS3vZ7qTdrVSEpCtkF5nLcxBaA6LpGSkBu";
+
+    std::string developerWallet = "PQPZd1WnYeVNJ9WASidzGvSmWtkqop4KQx";
     CTxDestination developerWalletDest = CBitcoinAddress(developerWallet).Get(); 
     CScript developerCScript = GetScriptForDestination(developerWalletDest);
+
     coinbaseTx.vout[1].scriptPubKey = developerCScript;
-    coinbaseTx.vout[0].nValue = 0.8 * (nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus()));
-    coinbaseTx.vout[1].nValue = 0.2 * (nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus()));
+
+    //coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
+
+    coinbaseTx.vout[0].nValue = 0.9 * (nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus()));
+    coinbaseTx.vout[1].nValue = 0.1 * (nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus()));
+
+
+
     coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
     pblocktemplate->vchCoinbaseCommitment = GenerateCoinbaseCommitment(*pblock, pindexPrev, chainparams.GetConsensus());

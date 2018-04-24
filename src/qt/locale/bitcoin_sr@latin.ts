@@ -158,8 +158,8 @@
         <translation>Otvori &amp;URI...</translation>
     </message>
     <message>
-        <source>Send coins to a PlusOneCoin address</source>
-        <translation>Pošalji novčiće na PlusOneCoin adresu</translation>
+        <source>Send coins to a Brazio address</source>
+        <translation>Pošalji novčiće na Brazio adresu</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
@@ -406,8 +406,8 @@
 <context>
     <name>bitcoin-core</name>
     <message>
-        <source>PlusOneCoin Core</source>
-        <translation>PlusOneCoin Core</translation>
+        <source>Brazio Core</source>
+        <translation>Brazio Core</translation>
     </message>
     <message>
         <source>Information</source>

@@ -506,8 +506,8 @@ std::string HelpMessage(HelpMessageMode mode)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/plusonecoin/plusonecoin>";
-    const std::string URL_WEBSITE = "<https://plusonecoin.org>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/brazio/brazio>";
+    const std::string URL_WEBSITE = "<https://brazio.org>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2017, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +

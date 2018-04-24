@@ -66,11 +66,11 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += plusonecoind
+  bin_PROGRAMS += braziod
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += plusonecoin-cli plusonecoin-tx
+  bin_PROGRAMS += brazio-cli brazio-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
@@ -359,7 +359,7 @@ if GLIBC_BACK_COMPAT
 libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 endif
 
-# cli: shared between plusonecoin and bitcoin-qt
+# cli: shared between brazio and bitcoin-qt
 libbitcoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_cli_a_SOURCES = \
@@ -369,17 +369,17 @@ libbitcoin_cli_a_SOURCES = \
 nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# plusonecoind binary #
-plusonecoind_SOURCES = plusonecoind.cpp
-plusonecoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-plusonecoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-plusonecoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# braziod binary #
+braziod_SOURCES = braziod.cpp
+braziod_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+braziod_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+braziod_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-plusonecoind_SOURCES += bitcoind-res.rc
+braziod_SOURCES += bitcoind-res.rc
 endif
 
-plusonecoind_LDADD = \
+braziod_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBUNIVALUE) \
@@ -392,38 +392,38 @@ plusonecoind_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-plusonecoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) 
+braziod_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) 
 
-# plusonecoin binary #
-plusonecoin_cli_SOURCES = plusonecoin-cli.cpp
-plusonecoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-plusonecoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-plusonecoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# brazio binary #
+brazio_cli_SOURCES = brazio-cli.cpp
+brazio_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+brazio_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+brazio_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-plusonecoin_cli_SOURCES += plusonecoin-cli-res.rc
+brazio_cli_SOURCES += brazio-cli-res.rc
 endif
 
-plusonecoin_cli_LDADD = \
+brazio_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-plusonecoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+brazio_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# plusonecoin-tx binary #
-plusonecoin_tx_SOURCES = plusonecoin-tx.cpp
-plusonecoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-plusonecoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-plusonecoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# brazio-tx binary #
+brazio_tx_SOURCES = brazio-tx.cpp
+brazio_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+brazio_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+brazio_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-plusonecoin_tx_SOURCES += plusonecoin-tx-res.rc
+brazio_tx_SOURCES += brazio-tx-res.rc
 endif
 
-plusonecoin_tx_LDADD = \
+brazio_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -431,7 +431,7 @@ plusonecoin_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-plusonecoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+brazio_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #

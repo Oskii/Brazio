@@ -484,7 +484,7 @@
         <translation>Opsiynau:</translation>
     </message>
     <message>
-        <source>PlusOneCoin Core</source>
+        <source>Brazio Core</source>
         <translation>Craidd Bitcoin</translation>
     </message>
     <message>

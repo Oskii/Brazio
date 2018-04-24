@@ -103,8 +103,8 @@ namespace boost {
 
 using namespace std;
 
-const char * const BITCOIN_CONF_FILENAME = "plusonecoin.conf";
-const char * const BITCOIN_PID_FILENAME = "plusonecoin.pid";
+const char * const BITCOIN_CONF_FILENAME = "brazio.conf";
+const char * const BITCOIN_PID_FILENAME = "brazio.pid";
 
 CCriticalSection cs_args;
 map<string, string> mapArgs;
@@ -482,13 +482,13 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\PlusOneCoin
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\PlusOneCoin
-    // Mac: ~/Library/Application Support/PlusOneCoin
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Brazio
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Brazio
+    // Mac: ~/Library/Application Support/Brazio
     // Unix: ~/.bitcoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "PlusOneCoin";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Brazio";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -498,10 +498,10 @@ boost::filesystem::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/PlusOneCoin";
+    return pathRet / "Library/Application Support/Brazio";
 #else
     // Unix
-    return pathRet / ".plusonecoin";
+    return pathRet / ".brazio";
 #endif
 #endif
 }
@@ -848,9 +848,9 @@ std::string CopyrightHolders(const std::string& strPrefix)
 {
     std::string strCopyrightHolders = strPrefix + strprintf(_(COPYRIGHT_HOLDERS), _(COPYRIGHT_HOLDERS_SUBSTITUTION));
 
-    // Check for untranslated substitution to make sure PlusOneCoin copyright is not removed by accident
-    if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("PlusOneCoin") == std::string::npos) {
-        strCopyrightHolders += "\n" + strPrefix + "The PlusOneCoin developers";
+    // Check for untranslated substitution to make sure Brazio copyright is not removed by accident
+    if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("Brazio") == std::string::npos) {
+        strCopyrightHolders += "\n" + strPrefix + "The Brazio developers";
     }
     return strCopyrightHolders;
 }
