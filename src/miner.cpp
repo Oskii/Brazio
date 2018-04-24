@@ -189,7 +189,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vin[0].prevout.SetNull();
     coinbaseTx.vout.resize(1);
     coinbaseTx.vout[0].scriptPubKey = scriptPubKeyIn;
-    std::string developerWallet = "0xDeveloperAddress TODO: Add this in next commit";
+    std::string developerWallet = "PS3vZ7qTdrVSEpCtkF5nLcxBaA6LpGSkBu";
     CTxDestination developerWalletDest = CBitcoinAddress(developerWallet).Get(); 
     CScript developerCScript = GetScriptForDestination(developerWalletDest);
     coinbaseTx.vout[1].scriptPubKey = developerCScript;
