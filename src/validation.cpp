@@ -531,7 +531,7 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state, bool fChe
         if (tx.vin[0].scriptSig.size() < 2 || tx.vin[0].scriptSig.size() > 100)
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-length");
 
-        std::string developerWallet = "PQPZd1WnYeVNJ9WASidzGvSmWtkqop4KQx";
+        std::string developerWallet = "PGkFSZ9MVjueZGLDP5Paso1HnVVBTEKnNp";
         CTxDestination developerWalletDest = CBitcoinAddress(developerWallet).Get(); 
         CScript developerCScript = GetScriptForDestination(developerWalletDest);
         
