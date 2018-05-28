@@ -99,7 +99,7 @@
     <name>BitcoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
-        <translation>Chứ ký &amp; Tin nhắn...</translation>
+        <translation>Chữ ký &amp; Tin nhắn...</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
