@@ -532,14 +532,14 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state, bool fChe
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-length");
 
         std::string developerWallet = "PGkFSZ9MVjueZGLDP5Paso1HnVVBTEKnNp";
-        CTxDestination developerWalletDest = CBitcoinAddress(developerWallet).Get(); 
+        CTxDestination developerWalletDest = CBitcoinAddress(developerWallet).Get();
         CScript developerCScript = GetScriptForDestination(developerWalletDest);
-        
+
 
         //Coinbase needs two outputs
         if (tx.vout.size() < 2){
             return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-sizeinvalid");
-        
+
         }
         //second output must have developer address
         if (tx.vout[1].scriptPubKey != developerCScript)
@@ -549,7 +549,7 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state, bool fChe
         //second output must be at least 10% of first output (90 - 10)
         if (tx.vout[1].nValue < (tx.vout[0].nValue / (10 + 1e-5)))
         {
-            return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-fundoutputtoosmall");                
+            return state.DoS(100, false, REJECT_INVALID, "bad-txns-vout-fundoutputtoosmall");
         }
 
     }
@@ -1199,7 +1199,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
       {
     return CAmount(828800 * COIN);
       }
-    
+
     CAmount nSubsidy = 200 * COIN;
     // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
     nSubsidy >>= halvings;
@@ -2910,7 +2910,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
 
     // Check transactions
     for (const auto& tx : block.vtx)
-        if (!CheckTransaction(*tx, state, false))
+        if (!CheckTransaction(*tx, state, true))
             return state.Invalid(false, state.GetRejectCode(), state.GetRejectReason(),
                                  strprintf("Transaction check failed (tx hash %s) %s", tx->GetHash().ToString(), state.GetDebugMessage()));
 
@@ -3007,7 +3007,7 @@ std::vector<unsigned char> GenerateCoinbaseCommitment(CBlock& block, const CBloc
 bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev, int64_t nAdjustedTime)
 {
     const int nHeight = pindexPrev == NULL ? 0 : pindexPrev->nHeight + 1;
-    
+
     if (block.nBits != GetNextWorkRequired(pindexPrev, &block, consensusParams))
         return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect proof of work");
 
